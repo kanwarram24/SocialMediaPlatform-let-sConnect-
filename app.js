@@ -6,6 +6,8 @@ const path = require('path')
 const bodyParser = require("body-parser")
 const mongoose = require("./database");
 const session = require("express-session");
+const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 const server = app.listen(port, () => console.log("Server listening on port " + port));
 
@@ -29,6 +31,8 @@ const profileRoute = require('./routes/profileRoutes');
 const uploadRoute = require('./routes/uploadRoutes');
 const searchRoute = require('./routes/searchRoutes');
 const messagesRoute = require('./routes/messagesRoutes');
+const forgotPasswordRoute = require('./routes/forgotPasswordRoute');
+const resetPasswordRoute = require('./routes/resetPasswordRoute');
 
 // Api routes
 const postsApiRoute = require('./routes/api/posts');
@@ -42,6 +46,8 @@ app.use("/profile", middleware.requireLogin, profileRoute);
 app.use("/uploads", uploadRoute);
 app.use("/search", middleware.requireLogin, searchRoute);
 app.use("/messages", middleware.requireLogin, messagesRoute);
+app.use("/forgot-password", forgotPasswordRoute);
+app.use("/reset-password", resetPasswordRoute);
 
 app.use("/api/posts", postsApiRoute);
 app.use("/api/users", usersApiRoute);
