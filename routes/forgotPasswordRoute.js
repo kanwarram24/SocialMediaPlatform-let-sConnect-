@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
-const User = require('../schemas/UserSchema');
+const User = require('../model/UserSchema');
 
 router.get("/", (req, res, next) => {
     res.status(200).render("forgotPassword");

@@ -481,13 +481,13 @@ function createPostHtml(postData, largeFont = false) {
                                     <i class='far fa-comment'></i>
                                 </button>
                             </div>
-                            <div class='postButtonContainer green'>
+                            <div class='postButtonContainer'>
                                 <button class='retweetButton ${retweetButtonActiveClass}'>
                                     <i class='fas fa-retweet'></i>
                                     <span>${postData.retweetUsers.length || ""}</span>
                                 </button>
                             </div>
-                            <div class='postButtonContainer red'>
+                            <div class='postButtonContainer'>
                                 <button class='likeButton ${likeButtonActiveClass}'>
                                     <i class='far fa-heart'></i>
                                     <span>${postData.likes.length || ""}</span>
