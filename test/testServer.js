@@ -150,5 +150,21 @@ describe("retweet post testing", function() {
       );
     });
   });
+
+  describe("Upload profile pic testing", function () {
+    it('should return status code 201', function (done) {
+      const profilePicture = faker.image.avatar(); 
+      request.post(
+        {
+          url: `${baseUrl}/api/users/profilePicture`,
+          json: { "profilePicture": profilePicture },
+        },
+        (error, response) => {
+          expect(response.statusCode).to.equal(201);
+          done();
+        }
+      );
+    });
+  });
   
   
