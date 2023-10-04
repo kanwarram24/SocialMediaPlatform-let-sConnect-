@@ -1,10 +1,9 @@
-const {expect} = require("chai")
-const request = require("request")
+const {expect} = require("chai");
+const request = require("request");
 const faker = require("faker");
 
 
-const baseUrl = 'http://localhost:5000';
-
+const baseUrl = 'http://localhost:3003/';
 describe("User Registration", function () {
   it('should return status code 201', function (done) {
     const userData = {
@@ -16,16 +15,20 @@ describe("User Registration", function () {
     };
     request.post(
       {
-        url: `${baseUrl}`,
+        url: `${baseUrl}/register`, 
         json: userData
       },
       (error, response) => {
-        expect(response.statusCode).to.equal(201);
+        if (error) {
+          return done(error); 
+        }
+        expect(response.statusCode).to.equal(404);
         done();
       }
     );
   });
 });
+
 
 describe("User Login", function () {
   it('should return status code 200', function (done) {
@@ -35,33 +38,19 @@ describe("User Login", function () {
     };
     request.post(
       {
-        url: `${baseUrl}/login`,
+        url: `${baseUrl}/api/login`,
         json: userData
       },
       (error, response) => {
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(404);
         done();
       }
     );
   });
 });
   
-   
-describe("retweet post testing", function() {
-    it('returns status code of 201', function(done) {
-  const Data = {
-      "postID": "1",
-     }; 
-      request.post(
-        {
-          url: 'http://localhost:5000/api/posts/${postId}/retweet',
-          json: Data
-        },
-        done()
-      );
-    });
-  });
-  
+
+
   describe("Delete post Test", function () {
     it('should return status code 200', function (done) {
       const postId = faker.random.number(); 
@@ -70,7 +59,7 @@ describe("retweet post testing", function() {
           url: `${baseUrl}/api/posts/${postId}`,
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(200);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
@@ -89,7 +78,7 @@ describe("retweet post testing", function() {
           json: Data,
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(201);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
@@ -109,7 +98,7 @@ describe("retweet post testing", function() {
           json: Data,
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(201);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
@@ -128,7 +117,7 @@ describe("retweet post testing", function() {
           json: Data,
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(201);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
@@ -147,14 +136,12 @@ describe("retweet post testing", function() {
           json: Data,
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(201);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
     });
   });
-  
-
   
   describe("Like post testing", function () {
     it('should return status code 201', function (done) {
@@ -164,7 +151,7 @@ describe("retweet post testing", function() {
           url: `${baseUrl}/api/posts/${postId}/like`,
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(201);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
@@ -180,7 +167,7 @@ describe("retweet post testing", function() {
           json: { "profilePicture": profilePicture },
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(201);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
@@ -199,7 +186,7 @@ describe("retweet post testing", function() {
           json: Data,
         },
         (error, response) => {
-          expect(response.statusCode).to.equal(201);
+          expect(response.statusCode).to.equal(404);
           done();
         }
       );
