@@ -47,37 +47,6 @@ describe("User Login", function () {
 });
   
    
-describe("Post reply testing", function () {
-  it('should return status code 201', function (done) {
-    const postReply = faker.lorem.sentence(); 
-    request.post(
-      {
-        url: `${baseUrl}/api/posts`,
-        json: { "postReply": postReply },
-      },
-      (error, response) => {
-        expect(response.statusCode).to.equal(201);
-        done();
-      }
-    );
-  });
-});
-  
-  
-describe("delete post Test", function() {
-    it('returns status code of 200', function(done) {
-      const postId = '1'; 
-      request.delete(
-        {
-          url: 'http://localhost:5000/api/posts/${postId}'
-        },
-        done()
-      );
-    });
-  });
-  
-
-
 describe("retweet post testing", function() {
     it('returns status code of 201', function(done) {
   const Data = {
@@ -93,6 +62,41 @@ describe("retweet post testing", function() {
     });
   });
   
+  describe("Delete post Test", function () {
+    it('should return status code 200', function (done) {
+      const postId = faker.random.number(); 
+      request.delete(
+        {
+          url: `${baseUrl}/api/posts/${postId}`,
+        },
+        (error, response) => {
+          expect(response.statusCode).to.equal(200);
+          done();
+        }
+      );
+    });
+  });
+  
+  describe("Retweet post testing", function () {
+    it('should return status code 201', function (done) {
+      const postID = faker.random.number(); 
+      const Data = {
+        "postID": postID,
+      };
+      request.post(
+        {
+          url: `${baseUrl}/api/posts/${postID}/retweet`,
+          json: Data,
+        },
+        (error, response) => {
+          expect(response.statusCode).to.equal(201);
+          done();
+        }
+      );
+    });
+  });
+  
+
   describe("follow testing", function() {
     it('returns status code of 201', function(done) {
      
