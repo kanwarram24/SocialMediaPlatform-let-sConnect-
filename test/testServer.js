@@ -135,7 +135,22 @@ describe("retweet post testing", function() {
     });
   });
 
-  
+  describe("Like post testing", function() {
+    it('returns status code of 201', function(done) {
+     
+  const Data = {
+      "postID": "1",
+     }; 
+      request.get(
+        {
+          url: 'http://localhost:5000/api/posts/${postId}/like',
+          
+          json: Data
+        },
+        done()
+      );
+    });
+  }); 
  
 
 
