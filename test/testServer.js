@@ -1,43 +1,48 @@
 const {expect} = require("chai")
 const request = require("request")
+const faker = require("faker");
 
-describe("register testing", function() {
-    it('returns status code of 201', function(done) {    
-  const Data = {
-      "firstname":"darsh",
-      "lastname": "patel",
-      "email":"dar@hmail.com",
-      "username": "darshp",
-      "password": "d@123",
-     }; 
-      request.post(
-        {
-          url: 'http://localhost:5000/',
-          json: Data
-        },
-        done()
-      );
-    });
+describe("User Registration", function () {
+  it('should return status code 201', function (done) {
+    const userData = {
+      "firstname": faker.name.firstName(),
+      "lastname": faker.name.lastName(),
+      "email": faker.internet.email(),
+      "username": faker.internet.userName(),
+      "password": faker.internet.password(),
+    };
+    request.post(
+      {
+        url: ${baseUrl}/register,
+        json: userData
+      },
+      (error, response) => {
+        expect(response.statusCode).to.equal(201);
+        done();
+      }
+    );
   });
-
+});
   
-describe("login testing", function() {
-    it('returns status code of 201', function(done) {
-  const Data = {
-      "email": "darshp",
-      "password": "d@123",
-     }; 
-      request.post(
-        {
-          url: 'http://localhost:5000/login',
-          json: Data
-        },
-        done()
-      );
-    });
-  });
+describe("User Login", function () {
+  it('should return status code 200', function (done) {
+    const userData = {
+      "email": faker.internet.email(),
+      "password": faker.internet.password(),
+    };
+    request.post(
+      {
+        url: ${baseUrl}/login,
+        json: userData
+      },
+      (error, response) => {
+        expect(response.statusCode).to.equal(200);
+        done();
+      }
+    );
+  });
+});
   
-
    
 describe("post reply testing", function() {
     it('returns status code of 201', function(done) { 
