@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-const User = require('../schemas/UserSchema');
+const User = require('../models/UserSchema');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
