@@ -187,4 +187,22 @@ describe("retweet post testing", function() {
     });
   });
   
+  describe("Upload cover photo", function () {
+    it('should return status code 201', function (done) {
+      const userId = faker.random.number(); 
+      const Data = {
+        "coverPhoto": "/images/coverPic.jpeg",
+      };
+      request.post(
+        {
+          url: `${baseUrl}/api/users/${userId}/coverPhoto`,
+          json: Data,
+        },
+        (error, response) => {
+          expect(response.statusCode).to.equal(201);
+          done();
+        }
+      );
+    });
+  });
   
