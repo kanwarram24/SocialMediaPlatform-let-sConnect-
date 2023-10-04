@@ -120,7 +120,7 @@ describe("retweet post testing", function() {
   });
 
    
-  describe("get followers testing", function() {
+  describe("get following testing", function() {
     it('returns status code of 201', function(done) {
   const Data = {
       "userID": "1",
