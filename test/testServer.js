@@ -135,22 +135,20 @@ describe("retweet post testing", function() {
     });
   });
 
-  describe("Like post testing", function() {
-    it('returns status code of 201', function(done) {
-     
-  const Data = {
-      "postID": "1",
-     }; 
+  
+  describe("Like post testing", function () {
+    it('should return status code 201', function (done) {
+      const postId = faker.random.number(); 
       request.get(
         {
-          url: 'http://localhost:5000/api/posts/${postId}/like',
-          
-          json: Data
+          url: `${baseUrl}/api/posts/${postId}/like`,
         },
-        done()
+        (error, response) => {
+          expect(response.statusCode).to.equal(201);
+          done();
+        }
       );
     });
-  }); 
- 
-
-
+  });
+  
+  
