@@ -2,6 +2,9 @@ const {expect} = require("chai")
 const request = require("request")
 const faker = require("faker");
 
+
+const baseUrl = 'http://localhost:5000';
+
 describe("User Registration", function () {
   it('should return status code 201', function (done) {
     const userData = {
@@ -13,7 +16,7 @@ describe("User Registration", function () {
     };
     request.post(
       {
-        url: ${baseUrl}/register,
+        url: `${baseUrl}`,
         json: userData
       },
       (error, response) => {
@@ -23,7 +26,7 @@ describe("User Registration", function () {
     );
   });
 });
-  
+
 describe("User Login", function () {
   it('should return status code 200', function (done) {
     const userData = {
@@ -32,34 +35,33 @@ describe("User Login", function () {
     };
     request.post(
       {
-        url: ${baseUrl}/login,
+        url: `${baseUrl}/login`,
         json: userData
       },
       (error, response) => {
         expect(response.statusCode).to.equal(200);
         done();
       }
-    );
-  });
+    );
+  });
 });
   
    
-describe("post reply testing", function() {
-    it('returns status code of 201', function(done) { 
-  const Data = {
-      "postReply": "Yes How are you",
-     }; 
-      request.post(
-        {
-          url: 'http://localhost:5000/api/posts',
-          json: Data
-        },
-        done()
-      );
-    });
+describe("Post reply testing", function () {
+  it('should return status code 201', function (done) {
+    const postReply = faker.lorem.sentence(); 
+    request.post(
+      {
+        url: `${baseUrl}/api/posts`,
+        json: { "postReply": postReply },
+      },
+      (error, response) => {
+        expect(response.statusCode).to.equal(201);
+        done();
+      }
+    );
   });
-  
-
+});
   
   
 describe("delete post Test", function() {
