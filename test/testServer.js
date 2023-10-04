@@ -97,54 +97,63 @@ describe("retweet post testing", function() {
   });
   
 
-  describe("follow testing", function() {
-    it('returns status code of 201', function(done) {
-     
-  const Data = {
-      "userID": "1",
-     }; 
+  describe("Follow testing", function () {
+    it('should return status code 201', function (done) {
+      const userId = faker.random.number(); 
+      const Data = {
+        "userID": userId,
+      };
       request.put(
         {
-          url: 'http://localhost:5000/:userId/follow',
-          json: Data   
+          url: `${baseUrl}/api/users/${userId}/follow`,
+          json: Data,
         },
-        done()
+        (error, response) => {
+          expect(response.statusCode).to.equal(201);
+          done();
+        }
       );
     });
   });
-
- 
-  describe("get followers testing", function() {
-    it('returns status code of 201', function(done) {
-     
-  const Data = {
-      "userID": "1",
-     }; 
+  
+  describe("Get followers testing", function () {
+    it('should return status code 201', function (done) {
+      const userId = faker.random.number(); 
+      const Data = {
+        "userID": userId,
+      };
       request.get(
         {
-          url: 'http://localhost:5000/:userId/followers',
-          json: Data
+          url: `${baseUrl}/api/users/${userId}/followers`,
+          json: Data,
         },
-        done()
+        (error, response) => {
+          expect(response.statusCode).to.equal(201);
+          done();
+        }
       );
     });
   });
-
-   
-  describe("get following testing", function() {
-    it('returns status code of 201', function(done) {
-  const Data = {
-      "userID": "1",
-     }; 
+  
+  describe("Get following testing", function () {
+    it('should return status code 201', function (done) {
+      const userId = faker.random.number(); 
+      const Data = {
+        "userID": userId,
+      };
       request.get(
         {
-          url: 'http://localhost:5000/:userId/follow',
-          json: Data  
+          url: `${baseUrl}/api/users/${userId}/following`,
+          json: Data,
         },
-        done()
+        (error, response) => {
+          expect(response.statusCode).to.equal(201);
+          done();
+        }
       );
     });
   });
+  
 
   
   describe("Like post testing", function () {
